@@ -7,7 +7,7 @@
 var LIEN_PLAY_STORE = ""; // ex : "https://play.google.com/store/apps/details?id=com.jllbstudio.stockmvt"
 
 /* Clé publique Web3Forms (voir PARTIE 5 du guide) */
-var CLE_WEB3FORMS = "REMPLACE_PAR_TA_CLE_WEB3FORMS";
+var CLE_WEB3FORMS = "05db74d3-5eba-4bf1-b773-599730e9a306";
 
 (function () {
     "use strict";
