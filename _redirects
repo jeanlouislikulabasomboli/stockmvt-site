@@ -1,11 +1,20 @@
-/privacy-policy         /confidentialite.html   301
-/confidentialite        /confidentialite.html   301
-/privacy                /privacy.html           301
-/terms                  /conditions.html        301
-/conditions             /conditions.html        301
-/delete-account         /suppression-compte.html 301
-/suppression            /suppression-compte.html 301
-/suppression-compte     /suppression-compte.html 301
-/support                /support.html           301
-/contact                /support.html           301
-/aide                   /support.html           301
+# ============================================================
+#  StockMvt — alias d'URL
+#  REGLE : la destination ne doit JAMAIS finir par .html
+#  Cloudflare Pages redirige deja /page.html -> /page (307).
+#  Ajouter une regle inverse cree une boucle infinie.
+# ============================================================
+
+/politique                     /confidentialite      301
+/politique-de-confidentialite  /confidentialite      301
+/privacy-policy                /privacy              301
+/terms                         /conditions           301
+/terms-of-use                  /conditions           301
+/cgu                           /conditions           301
+/delete-account                /suppression-compte   301
+/data-deletion                 /suppression-compte   301
+/account-deletion              /suppression-compte   301
+/suppression                   /suppression-compte   301
+/contact                       /support              301
+/aide                          /support              301
+/help                          /support              301
