@@ -163,11 +163,20 @@ var CLE_WEB3FORMS = "REMPLACE_PAR_TA_CLE_WEB3FORMS";
         var annees = document.querySelectorAll(".js-annee");
         for (var i = 0; i < annees.length; i++) annees[i].textContent = new Date().getFullYear();
 
-        var page = window.location.pathname.split("/").pop() || "index.html";
+        function normaliser(chemin) {
+            chemin = chemin.replace(/\.html$/, "").replace(/\/index$/, "/");
+            if (chemin.length > 1 && chemin.charAt(chemin.length - 1) === "/") {
+                chemin = chemin.slice(0, -1);
+            }
+            return chemin === "" ? "/" : chemin;
+        }
+
+        var courant = normaliser(window.location.pathname);
         var liens = document.querySelectorAll("#nav-principale a");
         for (var j = 0; j < liens.length; j++) {
             var href = liens[j].getAttribute("href") || "";
-            if (href === page) liens[j].classList.add("actif");
+            if (href.indexOf("#") !== -1 || href.indexOf("mailto:") === 0) continue;
+            if (normaliser(href) === courant) liens[j].classList.add("actif");
         }
     }
 
