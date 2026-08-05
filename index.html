@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
+<title>StockMvt — Gestion de stock simple, hors-ligne et en équipe</title>
+<meta name="description" content="StockMvt est une application Android de gestion de stock : entrées, sorties, inventaires, alertes, rapports PDF et travail en équipe. Fonctionne entièrement hors-ligne.">
+<link rel="canonical" href="https://stockmvt.jllbstudio.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="StockMvt">
+<meta property="og:title" content="StockMvt — Votre stock, sous contrôle">
+<meta property="og:description" content="Gérez les entrées, sorties et mouvements de stock de votre entreprise. Seul ou en équipe, en ligne ou hors-ligne.">
+<meta property="og:url" content="https://stockmvt.jllbstudio.com/">
+<meta property="og:image" content="https://stockmvt.jllbstudio.com/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "StockMvt",
+  "operatingSystem": "Android 7.0+",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "JLLB Studio", "url": "https://jllbstudio.com" },
+  "url": "https://stockmvt.jllbstudio.com/",
+  "description": "Application de gestion de stock pour petites et moyennes entreprises : mouvements, inventaires, alertes, rapports PDF, multi-utilisateurs, mode hors-ligne."
+}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo-stockmvt" viewBox="0 0 96 96">
+    <defs><linearGradient id="degLogo" x1="8" y1="2" x2="88" y2="94">
+      <stop stop-color="#0F172A"/><stop offset="1" stop-color="#2563EB"/>
+    </linearGradient></defs>
+    <rect x="4" y="4" width="88" height="88" rx="24" fill="url(#degLogo)"/>
+    <rect x="48" y="29" width="28" height="36" rx="6" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-width="4"/>
+    <path d="M48 40h28M62 29v11" fill="none" stroke="#fff" stroke-width="4"/>
+    <path d="m18 34 12 14-12 14M31 34l12 14-12 14" fill="none" stroke="#60A5FA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icone-play" viewBox="0 0 512 512">
+    <path fill="#34A853" d="M104.6 13.5C97 5.5 86.6 1.3 76 1.5l242 242 68.8-68.8L104.6 13.5z"/>
+    <path fill="#4285F4" d="M76 1.5C57.5 2.6 43 17.7 43 37.2v437.6c0 19.5 14.5 34.6 33 35.7l242-254.9L76 1.5z"/>
+    <path fill="#FBBC04" d="M386.8 174.7 318 243.5l68.8 68.8 83.9-47.8c14.5-8.3 23.3-23.5 23.3-40.2s-8.8-31.9-23.3-40.2l-83.9-47.8z"/>
+    <path fill="#EA4335" d="M76 510.5c10.6.2 21-4 28.6-12l282.2-186.2L318 243.5 76 510.5z"/>
+  </symbol>
+</svg>
+
+<header class="entete">
+  <div class="conteneur entete-inner">
+    <a href="index.html" class="marque">
+      <svg><use href="#logo-stockmvt"/></svg> StockMvt
+    </a>
+    <nav class="nav" id="nav-principale">
+      <a href="index.html#fonctionnalites">Fonctionnalités</a>
+      <a href="index.html#telecharger">Télécharger</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="support.html">Assistance</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </nav>
+    <div class="outils">
+      <button class="btn-icone" id="btn-theme" type="button" aria-label="Changer de thème">
+        <svg class="icone-soleil" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icone-lune" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+      <button class="btn-icone burger" id="btn-burger" type="button" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="conteneur hero-grille">
+    <div class="hero-texte">
+      <div class="pilule"><span class="point"></span> Android · Gratuit · Fonctionne hors-ligne</div>
+      <h1>Votre stock,<br><em>sous contrôle.</em></h1>
+      <p class="chapeau">
+        StockMvt enregistre chaque entrée, chaque sortie et chaque inventaire de votre
+        entreprise. Seul ou en équipe, avec ou sans connexion internet, sur tous vos appareils.
+      </p>
+      <div class="hero-actions">
+        <a class="badge-play js-lien-play" aria-label="Télécharger StockMvt sur Google Play">
+          <svg><use href="#icone-play"/></svg>
+          <span class="badge-play-txt">
+            <small class="js-play-libelle">Bientôt sur</small>
+            <strong class="js-play-titre">Google Play</strong>
+          </span>
+        </a>
+        <a class="btn btn-secondaire" href="#fonctionnalites">Voir les fonctionnalités</a>
+      </div>
+      <p class="hero-note">Aucune publicité · Aucun traceur · Aucune revente de données</p>
+    </div>
+    <div class="telephone reveal">
+      <div class="telephone-ecran">
+        <img src="img/capture-1.png" alt="Écran d'accueil de StockMvt"
+             onerror="this.outerHTML='&lt;svg class=&quot;logo-vide&quot;&gt;&lt;use href=&quot;#logo-stockmvt&quot;/&gt;&lt;/svg&gt;'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FONCTIONNALITÉS ======================= -->
+<section id="fonctionnalites" class="section-alt">
+  <div class="conteneur">
+    <div class="centre">
+      <p class="eyebrow">Fonctionnalités</p>
+      <h2>Tout ce qu'il faut pour piloter un stock</h2>
+      <p class="sous-titre">Pensé pour les commerces, dépôts, pharmacies, quincailleries et
+        petites structures qui veulent arrêter les cahiers et les tableurs.</p>
+    </div>
+
+    <div class="grille-cartes">
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></div>
+        <h3>Entrées, sorties, inventaires</h3>
+        <p>Chaque mouvement est enregistré avec son motif, son emplacement, sa quantité,
+           son auteur, la date et l'heure. Le stock avant et après est toujours visible.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h3>Alertes automatiques</h3>
+        <p>Seuils minimum et maximum par produit. L'application vous prévient dès qu'un
+           article passe en stock faible, en rupture ou en surstock.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3>Rapports PDF professionnels</h3>
+        <p>État global du stock, ruptures, réapprovisionnement, achats, ventes, pertes,
+           rapport financier. Générés avec votre logo et partageables en un geste.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Travail en équipe</h3>
+        <p>Cinq rôles avec des droits distincts : administrateur, éditeur, coordinateur,
+           auditeur, opérateur. Invitation par QR code, en quelques secondes.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg></div>
+        <h3>Codes-barres et étiquettes</h3>
+        <p>Scannez avec l'appareil photo (EAN-13, EAN-8, UPC, CODE 128, CODE 39, ITF-14, MSI)
+           ou générez vos propres étiquettes à imprimer.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><line x1="12" y1="12" x2="12" y2="21"/><polyline points="9 18 12 21 15 18"/></svg></div>
+        <h3>100 % hors-ligne</h3>
+        <p>Tout fonctionne sans internet, indéfiniment. Vos données sont stockées sur
+           l'appareil et se synchronisent automatiquement dès le retour du réseau.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></div>
+        <h3>Assistant intelligent</h3>
+        <p>Posez vos questions en langage naturel : « quel produit se vend le mieux ? »,
+           « que dois-je commander ? ». L'assistant analyse vos données réelles.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Cinq langues</h3>
+        <p>Français, English, हिन्दी, Lingala et Kiswahili. L'interface entière et
+           l'assistant s'adaptent à votre langue.</p>
+      </article>
+
+      <article class="carte reveal">
+        <div class="carte-icone"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>Utilisable sans compte</h3>
+        <p>Commencez immédiatement, sans inscription, sans e-mail. Vous pourrez créer un
+           compte plus tard : vos données locales seront transférées telles quelles.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CAPTURES ======================= -->
+<section id="apercu">
+  <div class="conteneur">
+    <div class="centre">
+      <p class="eyebrow">Aperçu</p>
+      <h2>L'application en images</h2>
+    </div>
+    <div class="galerie">
+      <figure class="reveal"><img src="img/capture-1.png" alt="Tableau de bord StockMvt" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/capture-2.png" alt="Liste des produits" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/capture-3.png" alt="Détails d'un produit" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/capture-4.png" alt="Rapport de stock" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TÉLÉCHARGEMENT ======================= -->
+<section id="telecharger" class="section-alt">
+  <div class="conteneur">
+    <div class="bloc-dl reveal">
+      <p class="eyebrow" style="color:#93C5FD">Télécharger</p>
+      <h2>Installez StockMvt sur votre Android</h2>
+      <p>Gratuit, sans publicité et sans achat obligatoire. Installez, choisissez votre
+         langue, et commencez à enregistrer vos mouvements en moins de deux minutes.</p>
+      <a class="badge-play js-lien-play" aria-label="Télécharger StockMvt sur Google Play">
+        <svg><use href="#icone-play"/></svg>
+        <span class="badge-play-txt">
+          <small class="js-play-libelle">Bientôt sur</small>
+          <strong class="js-play-titre">Google Play</strong>
+        </span>
+      </a>
+      <div class="dl-meta">
+        <div><strong>Android 7.0+</strong>API 24 minimum</div>
+        <div><strong>Gratuit</strong>Sans publicité</div>
+        <div><strong>Hors-ligne</strong>Aucune connexion requise</div>
+        <div><strong>5 langues</strong>FR · EN · HI · LN · SW</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section id="faq">
+  <div class="conteneur">
+    <div class="centre">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Vous vous demandez peut-être…</h2>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item ouvert">
+        <button class="faq-q" type="button">StockMvt fonctionne-t-il vraiment sans internet ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          Oui, entièrement et sans limite de durée. Vos produits, mouvements, catégories,
+          alertes et rapports sont enregistrés directement dans l'appareil. Si vous avez un
+          compte, tout se synchronise automatiquement dès que la connexion revient. Aucune
+          action de votre part n'est nécessaire.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">Suis-je obligé de créer un compte ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          Non. Le mode « Continuer sans compte » vous donne accès à toutes les fonctions de
+          gestion, sans inscription et sans qu'aucune donnée ne quitte votre téléphone. Le
+          compte Google devient utile uniquement si vous souhaitez sauvegarder dans le cloud,
+          travailler à plusieurs ou retrouver vos données sur un autre appareil. Si vous vous
+          connectez plus tard, vos données locales sont transférées automatiquement.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">L'application est-elle payante ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          StockMvt est gratuite et ne contient aucune publicité. Elle ne revend pas vos
+          données et ne vous impose aucun achat pour fonctionner.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">Comment inviter mes employés ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          Dans <strong>Menu → Entreprise → Inviter</strong>, choisissez le rôle à attribuer.
+          L'application génère un QR code d'invitation unique. Votre collaborateur le scanne
+          depuis son propre téléphone, ou vous le lui envoyez en image : il pourra l'importer
+          depuis sa galerie. Vous pouvez modifier ou retirer un rôle à tout moment.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">Que fait exactement l'assistant intelligent ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          Il lit vos données de stock et répond à vos questions en langage naturel. Il
+          s'appuie sur un modèle de langage exécuté chez un prestataire d'infrastructure IA.
+          Ses réponses sont des aides à la décision, pas des conseils comptables, financiers
+          ou juridiques. L'assistant est indisponible en mode hors-ligne et en mode sans
+          compte. Le détail figure dans notre
+          <a href="confidentialite.html#assistant">politique de confidentialité</a>.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">Comment supprimer mon compte et mes données ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          Depuis l'application, allez dans <strong>Menu → Supprimer le compte</strong>. Si
+          vous n'avez plus accès à l'application, utilisez le formulaire de notre page
+          <a href="suppression-compte.html">Suppression du compte et des données</a>.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">Pourquoi l'application demande-t-elle l'appareil photo ?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-r"><div class="faq-r-inner">
+          Uniquement pour deux usages que vous déclenchez vous-même : scanner un code-barres
+          ou un QR code d'invitation, et photographier un produit. Le flux vidéo est analysé
+          en direct dans l'appareil et n'est jamais enregistré ni transmis. Vous pouvez
+          refuser cette permission : le reste de l'application continue de fonctionner.
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PIED ======================= -->
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-grille">
+      <div class="pied-marque">
+        <a href="index.html" class="marque"><svg><use href="#logo-stockmvt"/></svg> StockMvt</a>
+        <p>Application de gestion de stock pour petites et moyennes entreprises.
+           Éditée par JLLB Studio.</p>
+      </div>
+      <div class="pied-col">
+        <strong>Produit</strong>
+        <a href="index.html#fonctionnalites">Fonctionnalités</a>
+        <a href="index.html#apercu">Aperçu</a>
+        <a href="index.html#telecharger">Télécharger</a>
+      </div>
+      <div class="pied-col">
+        <strong>Aide</strong>
+        <a href="support.html">Assistance</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="mailto:support@jllbstudio.com">support@jllbstudio.com</a>
+      </div>
+      <div class="pied-col">
+        <strong>Légal</strong>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+        <a href="privacy.html">Privacy Policy (EN)</a>
+        <a href="conditions.html">Conditions d'utilisation</a>
+        <a href="suppression-compte.html">Suppression des données</a>
+      </div>
+    </div>
+    <div class="pied-bas">
+      <span>© <span class="js-annee">2026</span> JLLB Studio — Tous droits réservés.</span>
+      <span>StockMvt <span class="mono">v1.0.0</span> · Android</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
